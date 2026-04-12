@@ -1,0 +1,37 @@
+# ---------------------------------- #
+#          Delivery Jobs             #
+# ---------------------------------- #
+#
+# Job ID: A unique identifier for the delivery job.
+farmer-request:
+  # Display item in the GUI.
+  gui-item:
+    material: "HAY_BLOCK"
+    display-name: "&eFarmer's Request"
+    lore:
+      - "&7A local farmer needs help!"
+      - "&7with his harvest."
+  # Permission required to see and do this job (optional).
+  permission: "customblacksmith.delivery.farmer"
+  # Items the player must have to complete the delivery.
+  requirements:
+    - material: "WHEAT"
+      amount: 64
+    - material: "CARROT"
+      amount: 16
+  # Rewards given upon completion.
+  rewards:
+    money: 1000.0
+    points: 50
+    # Commands to run from the console. Use {player} for the player's name.
+    commands:
+      - "say {player} has completed the farmer's delivery!"
+    # Items to give to the player.
+    items:
+      - material: "DIAMOND_PICKAXE"
+        amount: 1
+        display-name: "&bFarmer's Gratitude"
+  # Settings for time and cooldown
+  settings:
+    delivery-time: 120 # Time in seconds to complete the delivery
+    cooldown: 600      # Time in seconds before this job can be taken again

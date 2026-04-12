@@ -1,0 +1,782 @@
+# ---------------------------------- #
+#      CustomBlackSmith Config       #
+# ---------------------------------- #
+
+# ---------------------------------- #
+#        Currency Settings           #
+# ---------------------------------- #
+# Configure how Money and Points are displayed.
+# These values affect the editor, delivery, and slot unlock menus.
+currency:
+  money:
+    prefix: "$"        # Symbol displayed before the amount, for example: $1000
+    suffix: ""         # Text displayed after the amount, for example: 1000 Coins
+  points:
+    prefix: ""         # Symbol displayed before the amount
+    suffix: " Points"  # Text displayed after the amount, for example: 100 Points
+
+# Set this to false to disable all global glass decorations.
+enable-global-decorations: true
+
+# General messages, supports '&' color codes.
+messages:
+  prefix: "&8[&6Smithy&8] "
+  no-permission: "&cYou don't have permission to do that."
+  player-only: "&cThis command can only be run by a player."
+  reload: "&aConfiguration has been reloaded!"
+  inventory-full: "&cYour inventory is full! Make space to claim your items."
+  claim-item-success: "&aYou have claimed your &f{item}&a."
+  claim-all-success: "&aYou have claimed &e{amount} &aitems."
+
+  # GUI Titles
+  player-gui-main-title: "&8Blacksmith"
+  player-gui-category-title: "&8Crafting &8» &7{category}"
+  recipe-detail-gui-title: "&8Recipe Details"
+  quantity-select-gui-title: "&8Select Quantity"
+  my-items-gui-title: "&8My Finished Items"
+  delivery-gui-title: "&8Delivery Jobs"
+  admin-category-gui-title: "&4&lAdmin &8» &7Categories"
+  admin-gui-title: "&4&lAdmin &8» &c{category}"
+  recipe-editor-gui-title: "&4Recipe Editor"
+  craft-speed-up-gui-title: "&8Speed Up Craft"
+  delivery-admin-gui-title: "&3&lDelivery Admin"
+  delivery-editor-gui-title: "&3Delivery Editor"
+
+  # Crafting Statuses
+  craft-start: "&aStarted crafting &f{item}&a! It will be ready in &e{time}&a."
+  craft-start-multiple: "&aSuccessfully queued &fx{amount} {item}&a for crafting!"
+  craft-start-partial: "&eOnly had resources/space to queue &fx{amount} {item}&e."
+  craft-finish: "&6Your &f{item}&6 is ready for pickup!"
+  craft-no-permission: "&cYou lack the permission to craft this."
+  craft-no-money: "&cInsufficient funds. Required: &a{money}"
+  craft-no-points: "&cInsufficient points. Required: &b{points}"
+  craft-no-items: "&cYou are missing the required ingredients."
+  craft-max-slots: "&cYou have reached your maximum crafting capacity."
+  cooldown-active: "&cThis recipe is on cooldown. Time left: &e{time}&c."
+  craft-status-can-craft: "&a&lLEFT-CLICK TO SELECT QUANTITY"
+  craft-status-cannot-craft: "&c&lCANNOT CRAFT"
+  craft-status-in-progress: "&e&lCRAFTING... &7({time})"
+  craft-speed-up-success: "&aCraft accelerated! Time reduced by &e{time}&a."
+  craft-speed-up-no-points: "&cNot enough points. Requires: &b{cost}"
+  level-requirement-not-met-craft: "&cYou cannot craft this! Requires Forging Level &e{level}&c."
+  level-requirement-not-met-use: "&cYou cannot use this item! &7Required Forging Level: &e{required_level} &7Your Level: &c{current_level}"
+  level-up: "&b&lLEVEL UP! &7You are now Forging Level &e{level}&7!"
+  level-requirement-lore: "&7Requires Forging Level: &e{level}"
+  xp-reward-lore: "&b+{xp} &7Forging XP"
+  craft-exp-gain: "&b+{xp} &7Forging XP!"
+
+
+  # Slot Unlocking Statuses
+  slot-unlock-success: "&aSuccessfully unlocked crafting slot #{slot_number}!"
+  slot-unlock-no-money: "&cYou don't have enough money to unlock this slot. Required: &a{money}"
+  slot-unlock-no-points: "&cYou don't have enough points to unlock this slot. Required: &b{points}"
+  slot-unlock-maxed: "&cYou have already unlocked the maximum number of slots."
+
+  # Delivery Statuses
+  delivery-start: "&aStarted delivery for &f{job}&a! The reward will be ready in &e{time}&a."
+  delivery-finish: "&6Your delivery for &f{job}&6 is complete! Check '/bs' for rewards."
+  delivery-no-items: "&cYou don't have the items for this delivery."
+  delivery-max-slots: "&cYou have reached your maximum delivery capacity."
+  delivery-cooldown-active: "&cThis job is on cooldown. Time left: &e{time}&c."
+  delivery-delete-success: "&aSuccessfully deleted delivery job '{id}'!"
+
+  # Status Command
+  status-no-crafts: "&eYou have no items currently being crafted."
+  status-header: "&7Your Active Crafts:"
+  status-entry: "&7- &f{item_name}&7: &e{time_left} &7remaining"
+
+  # Editor & Admin Command Messages
+  player-not-found: "&cPlayer '{player}' has not played on this server before."
+  player-not-online: "&cPlayer &e{player} &cis not online."
+  invalid-number-format: "&c'{input}' is not a valid number."
+  negative-number-not-allowed: "&cThe amount cannot be negative."
+  admin-command-usage: "&cInvalid subcommand. Use: reload, delivery, open, set, give."
+  admin-open-usage: "&cUsage: /bsa open <player>"
+  admin-set-give-usage: "&cUsage: /bsa <set|give> <level|exp> <player> <amount>"
+  admin-open-success: "&aOpened blacksmith menu for &e{player}&a."
+  admin-set-level-success: "&aSet &e{player}'s &aforging level to &e{level}&a."
+  admin-set-exp-success: "&aSet &e{player}'s &aforging exp to &e{exp}&a."
+  admin-give-level-success: "&aGave &e{amount} &alevel(s) to &e{player}&a. They are now level &e{level}&a."
+  admin-give-exp-success: "&aGave &e{amount} &aexp to &e{player}&a. They are now level &e{level} &awith &e{exp} &aexp."
+
+  recipe-editor-prompt-id: "&eEnter the recipe ID in chat (no spaces). Type 'cancel' to abort."
+  recipe-editor-prompt-category: "&eEnter the recipe category in chat. Type 'cancel' to abort."
+  recipe-editor-prompt-money: "&eEnter the money cost in chat. Type 'cancel' to abort."
+  recipe-editor-prompt-points: "&eEnter the points cost in chat. Type 'cancel' to abort."
+  recipe-editor-prompt-time: "&eEnter the crafting time (in seconds) in chat. Type 'cancel' to abort."
+  recipe-editor-prompt-cooldown: "&eEnter the cooldown (in seconds) in chat. Type 'cancel' to abort."
+  recipe-editor-prompt-permission: "&eEnter the permission node in chat (or 'none'). Type 'cancel' to abort."
+  recipe-editor-prompt-level: "&eEnter the required forging level in chat. Type 'cancel' to abort."
+  recipe-editor-prompt-xp: "&eEnter the XP reward for this recipe in chat. Type 'cancel' to abort."
+  recipe-editor-prompt-priority: "&eEnter the priority number (higher appears first). Type 'cancel' to abort."
+  recipe-editor-input-cancelled: "&cInput cancelled. Re-opening editor."
+  recipe-editor-invalid-number: "&cInvalid number. Please try again."
+  recipe-save-missing-info: "&cCannot save! Please set an ID, Category, Output, and at least one Ingredient."
+  recipe-id-exists: "&cCannot save! A recipe with the ID '&e{id}&c' already exists."
+  recipe-save-success: "&aSuccessfully saved recipe '&e{id}&a'."
+
+  delivery-editor-prompt-id: "&eEnter the job ID in chat (no spaces). Type 'cancel' to abort."
+  delivery-editor-prompt-money: "&eEnter the money reward in chat. Type 'cancel' to abort."
+  delivery-editor-prompt-points: "&eEnter the points reward in chat. Type 'cancel' to abort."
+  delivery-editor-prompt-time: "&eEnter the delivery time (in seconds) in chat. Type 'cancel' to abort."
+  delivery-editor-prompt-cooldown: "&eEnter the cooldown (in seconds) in chat. Type 'cancel' to abort."
+  delivery-editor-prompt-permission: "&eEnter the permission node in chat (or 'none'). Type 'cancel' to abort."
+  delivery-save-missing-info: "&cCannot save! Please set an ID, GUI Item, and at least one Requirement."
+  delivery-id-exists: "&cCannot save! A job with the ID '&e{id}&c' already exists."
+  delivery-save-success: "&aSuccessfully saved job '&e{id}&a'."
+
+# --- Forging Level System ---
+forging-level-system:
+  enabled: true
+  # XP needed for next level = base-xp * (current_level ^ xp-multiplier)
+  base-xp: 100.0
+  xp-multiplier: 1.5
+  # Default XP given for a craft if not specified in recipes.yml
+  default-xp-per-craft: 10.0
+
+# Player Crafting GUI Settings
+player-gui:
+  rows: 6
+  enable-decorations: true # SET TO FALSE TO DISABLE GLASS DECORATIONS IN THIS MENU
+  recipe-slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34]
+  # Configuration for locked/unknown recipe items
+  unknown-recipe-item:
+    material: "BARRIER" # Base material for the icon
+    display-name: "&c???" # Display name for the unknown item
+    custom-model-data: 101 # Adjust to your resource pack
+    lore:
+      - ""
+      - "&c&lLOCKED"
+      - "&7Unlocks at Forging Level &e{level}"
+  decorations:
+    'BLACK_STAINED_GLASS_PANE': [0,1,2,3,5,6,7,8,9,17,18,26,36,44,45,46,47,48,49,50,51,52,53]
+  my-items-button:
+    enabled: true
+    slot: 4
+    material: "CHEST"
+    custom-model-data: 1001
+    display-name: "&bMy Items"
+    lore:
+      - "&7You have &e{amount} &7items ready."
+      - ""
+      - "&aClick to collect."
+  level-status-item:
+    enabled: true
+    slot: 49
+    material: "EXPERIENCE_BOTTLE"
+    custom-model-data: 1001
+    display-name: "&bForging Level: &e{level}"
+    lore:
+      - "&7Experience:"
+      - "{xp_bar}"
+      - "&e{current_xp}&7/&e{needed_xp}"
+  categories:
+    Weapons:
+      slot: 11
+      material: "NETHERITE_SWORD"
+      custom-model-data: 1001
+      display-name: "&cWeapons"
+      lore:
+        - "&7Browse powerful, custom-forged weapons."
+    Tools:
+      slot: 12
+      material: "NETHERITE_PICKAXE"
+      custom-model-data: 1001
+      display-name: "&9Tools"
+      lore:
+        - "&7Browse efficient, durable tools."
+    Armor:
+      slot: 14
+      material: "NETHERITE_CHESTPLATE"
+      custom-model-data: 1001
+      display-name: "&aArmor"
+      lore:
+        - "&7Browse protective, enchanted armor sets."
+    Misc:
+      slot: 15
+      material: "ENCHANTED_GOLDEN_APPLE"
+      custom-model-data: 1001
+      display-name: "&eMiscellaneous"
+      lore:
+        - "&7Browse unique and useful items."
+
+  recipe-item:
+    lore:
+      - "{item_lore}"
+      - ""
+      - "&7Time: &e{time}"
+      - "&7Cooldown: &e{cooldown}"
+      - "{level_requirement}"
+      - "{xp_reward}"
+      - ""
+      - "{status}"
+      - "{craft_progress_bar}"
+  cooldown-bar:
+    enabled: true
+    symbol: "▪"
+    length: 20
+    color-full: "&c"
+    color-empty: "&a"
+  craft-progress-bar:
+    enabled: true
+    symbol: "▪"
+    length: 20
+    color-full: "&e"
+    color-empty: "&7"
+  xp-bar:
+    enabled: true
+    symbol: "▪"
+    length: 20
+    color-full: "&b"
+    color-empty: "&7"
+  back-button:
+    enabled: true
+    slot: 49
+    material: "ARROW"
+    custom-model-data: 1001
+    display-name: "&cBack"
+  next-page-button:
+    slot: 53
+    material: "ARROW"
+    custom-model-data: 1003
+    display-name: "&aNext Page ›"
+  prev-page-button:
+    slot: 45
+    material: "ARROW"
+    custom-model-data: 1002
+    display-name: "‹ Previous Page"
+
+# --- Crafting Slots System ---
+crafting-slots:
+  gui-slots: [37,38,39,40,41,42,43]
+  default-slots: 2
+  max-slots: 7
+  unlock-costs:
+    '3':
+      money: 10000.0
+    '4':
+      money: 50000.0
+    '5':
+      points: 500
+    '6':
+      money: 250000.0
+      points: 1000
+    '7':
+      money: 1000000.0
+      points: 5000
+  item-display:
+    in-progress:
+      display-name: "&e&lCrafting: &f{item_name}"
+      lore:
+        - "&7Time Remaining: &e{time_left}"
+        - ""
+        - "{craft_progress_bar}"
+        - ""
+        - "&bRight-Click to Speed Up"
+    empty-slot:
+      material: "GREEN_STAINED_GLASS_PANE"
+      custom-model-data: 1001
+      display-name: "&a&lAvailable Crafting Slot"
+      lore:
+        - "&7You can start a new craft."
+    locked-slot:
+      material: "RED_STAINED_GLASS_PANE"
+      custom-model-data: 1001
+      display-name: "&c&lLocked Crafting Slot"
+      lore:
+        - "&7Unlock more slots to craft"
+        - "&7more items at once."
+    unlockable-slot:
+      material: "ANVIL"
+      custom-model-data: 1001
+      display-name: "&6&lUnlock Slot #{slot_number}"
+      lore:
+        - "&7Unlock this slot to increase your"
+        - "&7crafting capacity."
+        - ""
+        - "&7Cost:"
+        - "{cost_lore}"
+        - ""
+        - "&aClick to Unlock!"
+    max-slots-locked:
+      material: "BARRIER"
+      custom-model-data: 1001
+      display-name: "&c&lLocked Crafting Slot"
+      lore:
+        - "&7You have reached the maximum"
+        - "&7number of unlockable slots."
+
+# --- Recipe Detail GUI ---
+recipe-detail-gui:
+  rows: 5
+  enable-decorations: true # Enable or disable filler items
+  fill-item: "GRAY_STAINED_GLASS_PANE"
+  ingredient-slots: [10, 11, 12, 19, 20, 21, 28, 29, 30]
+  output-slot: 24
+  back-button:
+    slot: 40
+    material: "ARROW"
+    custom-model-data: 1001
+    display-name: "&cBack to Recipes"
+  output-item-lore:
+    - "{item_lore}"
+    - ""
+    - "&7&nInformation"
+    - " &8› &7Craft Time: &e{time}"
+    - " &8› &7Cooldown: &e{cooldown} {cooldown_bar}"
+    - ""
+    - "&7&nRequirements (per item)"
+    - "{money}"
+    - "{points}"
+    - "{level}"
+    - "{xp}"
+    - ""
+    - "{status}"
+    - "{craft_progress_bar}"
+    - "{speed_up_status}"
+  money-format: " &8› &7Cost: &a{money}" # Updated default to use configured currency name indirectly if needed, but {money} usually returns just number in detail GUI logic. Wait, let's keep logic simple.
+  points-format: " &8› &7Cost: &b{points} Points" # You can change this line directly for recipe details.
+  level-format: " &8› &7Requires Level: &b{level}"
+  xp-format: " &8› &7XP Reward: &b+{xp}"
+  speed-up-prompt: "&b&lRIGHT-CLICK TO SPEED UP"
+
+
+# My Items GUI
+my-items-gui:
+  title: "&8My Finished Items"
+  rows: 6
+  enable-decorations: true # Enable or disable filler items
+  fill-item:
+    material: "BLACK_STAINED_GLASS_PANE"
+  back-button:
+    slot: 49
+    material: "ARROW"
+    custom-model-data: 1001
+    display-name: "&cBack to Crafting"
+  claim-all-button:
+    slot: 48
+    material: "HOPPER"
+    custom-model-data: 1001
+    display-name: "&aClaim All"
+    lore:
+      - "&7Click to claim all finished items."
+  next-page-button:
+    slot: 53
+    material: "ARROW"
+    custom-model-data: 1003
+    display-name: "&aNext Page ›"
+  prev-page-button:
+    slot: 45
+    material: "ARROW"
+    custom-model-data: 1002
+    display-name: "‹ Previous Page"
+
+# --- Admin GUIs ---
+admin-category-gui:
+  rows: 3
+  enable-decorations: true # Enable or disable filler items
+  use-player-gui-categories: true
+  fill-item:
+    material: "BLACK_STAINED_GLASS_PANE"
+
+admin-recipe-list-gui:
+  rows: 6
+  enable-decorations: true # Enable or disable filler items
+  fill-item: "BLACK_STAINED_GLASS_PANE"
+  back-button:
+    slot: 48
+    material: "ARROW"
+    custom-model-data: 1001
+    display-name: "&cBack to Categories"
+  prev-page-button:
+    slot: 47
+    material: "ARROW"
+    custom-model-data: 1002
+    display-name: "&cPrevious Page"
+  next-page-button:
+    slot: 51
+    material: "ARROW"
+    custom-model-data: 1003
+    display-name: "&aNext Page"
+  create-button:
+    slot: 49
+    material: "ANVIL"
+    custom-model-data: 1001
+    display-name: "&a&lCreate New Recipe"
+    lore:
+      - "&7Create a new recipe in this category."
+
+# --- Delivery Admin GUI ---
+delivery-admin-gui:
+  enable-decorations: true # Enable or disable filler items
+  fill-item: "BLACK_STAINED_GLASS_PANE"
+  create-button:
+    slot: 45
+    material: "ANVIL"
+    custom-model-data: 1001
+    display-name: "&a&lCreate New Job"
+    lore:
+      - "&7Click to open the delivery job editor."
+  prev-page-button:
+    slot: 48
+    material: "ARROW"
+    custom-model-data: 1002
+    display-name: "&cPrevious Page"
+  next-page-button:
+    slot: 50
+    material: "ARROW"
+    custom-model-data: 1003
+    display-name: "&aNext Page"
+
+# --- Delivery GUI ---
+delivery-gui:
+  title: "&8Delivery Jobs"
+  rows: 5
+  enable-decorations: true # Enable or disable filler items
+  job-item-layout:
+    lore:
+      - "{job_original_lore}"
+      - ""
+      - "&7Deliver in: &e{time}"
+      - "&7Cooldown: &e{cooldown}"
+      - ""
+      - "&7&nRequirements:"
+      - "{job_requirements}"
+      - ""
+      - "&7&nRewards:"
+      - "{job_rewards}"
+      - ""
+      - "{status}"
+      - "{delivery_progress_bar}"
+  progress-bar:
+    enabled: true
+    symbol: "▪"
+    length: 20
+    color-full: "&b"
+    color-empty: "&7"
+  static-items:
+    back-button:
+      slot: 40
+      material: "BARRIER"
+      custom-model-data: 1001
+      display-name: "&cClose"
+      action: "close"
+  job-slots: [10,11,12,13,14,15,16, 19,20,21,22,23,24,25]
+
+
+# Sounds (https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html)
+sounds:
+  craft-start: "BLOCK_ANVIL_USE"
+  craft-finish: "ENTITY_PLAYER_LEVELUP"
+  gui-click: "UI_BUTTON_CLICK"
+  locked-click: "BLOCK_NOTE_BLOCK_DIDGERIDOO"
+
+# PlayerPoints integration for speeding up active crafts.
+craft-speed-up:
+  enabled: true
+  enable-decorations: true # Added this
+  fill-item: "BLACK_STAINED_GLASS_PANE" # Added this
+  options:
+    'tier1':
+      slot: 11
+      material: "CLOCK"
+      custom-model-data: 1001
+      display-name: "&aTime Shard"
+      lore:
+        - "&7Reduce craft time by &e{time}&7."
+        - ""
+        - "&7Cost: &b{cost} Points"
+      reduce-seconds: 300
+      points-cost: 25
+
+    'tier2':
+      slot: 13
+      material: "EXPERIENCE_BOTTLE"
+      custom-model-data: 1001
+      display-name: "&bTime Elixir"
+      lore:
+        - "&7Reduce remaining time by &e{percentage}%&7."
+        - "&7This will skip &e{time_skipped}&7."
+        - ""
+        - "&7Cost: &b{cost} Points"
+      reduce-percentage: 25
+      points-cost: 50
+
+    'tier3':
+      slot: 15
+      material: "NETHER_STAR"
+      custom-model-data: 1001
+      display-name: "&6Instant Finish"
+      lore:
+        - "&7Instantly completes this craft."
+        - "&7Remaining Time: &e{time_remaining}"
+        - ""
+        - "&7Cost: &b{cost} Points"
+      points-per-second: 0.5
+
+# --- Quantity Select GUI ---
+quantity-select-gui:
+  title: "&8Select Crafting Quantity"
+  rows: 3
+  enable-decorations: true # Enable or disable filler items
+  fill-item: "GRAY_STAINED_GLASS_PANE"
+  back-button:
+    slot: 22
+    material: "ARROW"
+    custom-model-data: 1001
+    display-name: "&cBack to Recipe"
+  options:
+    '1':
+      slot: 11
+      material: "LIME_DYE"
+      custom-model-data: 1001
+      display-name: "&aCraft x1"
+      lore:
+        - "&7Craft a single item."
+        - ""
+        - "&7Total Cost:"
+        - "{cost_lore}"
+    '4':
+      slot: 12
+      material: "YELLOW_DYE"
+      custom-model-data: 1001
+      display-name: "&eCraft x4"
+      lore:
+        - "&7Craft 4 items."
+        - ""
+        - "&7Total Cost:"
+        - "{cost_lore}"
+    '8':
+      slot: 14
+      material: "ORANGE_DYE"
+      custom-model-data: 1001
+      display-name: "&6Craft x8"
+      lore:
+        - "&7Craft 8 items."
+        - ""
+        - "&7Total Cost:"
+        - "{cost_lore}"
+    'fill':
+      slot: 15
+      material: "REDSTONE_BLOCK"
+      custom-model-data: 1001
+      display-name: "&cCraft Max"
+      lore:
+        - "&7Craft as many as possible based"
+        - "&7on your resources and available"
+        - "&7crafting slots."
+
+# --- Recipe Editor GUI ---
+recipe-editor-gui:
+  enable-decorations: true # Enable or disable filler items
+  filler-item:
+    material: "BLACK_STAINED_GLASS_PANE"
+  output-placeholder:
+    material: "HOPPER"
+    custom-model-data: 1001
+    display-name: "&a&lOutput Slot"
+    lore:
+      - "&7Place the resulting item here."
+  ingredient-placeholder:
+    material: "GREEN_STAINED_GLASS_PANE"
+    custom-model-data: 1001
+    display-name: "&b&lIngredient Slot"
+    lore:
+      - "&7Place a crafting ingredient here."
+  buttons:
+    back:
+      material: "ARROW"
+      custom-model-data: 1001
+      display-name: "&c&lBack"
+      lore:
+        - "&7Return to the recipe list."
+    save-ready:
+      material: "LIME_STAINED_GLASS_PANE"
+      custom-model-data: 1001
+      display-name: "&a&lSave Recipe"
+      lore:
+        - "&7Click to save this recipe to recipes.yml"
+    save-not-ready:
+      material: "RED_STAINED_GLASS_PANE"
+      custom-model-data: 1001
+      display-name: "&c&lCannot Save"
+      lore:
+        - "&cMissing the following information:"
+    id:
+      material: "NAME_TAG"
+      custom-model-data: 1001
+      display-name: "&e&lRecipe ID"
+      is_editing_text: "&cThe ID of an existing recipe cannot be changed."
+      lore:
+        - "{is_editing_lore}"
+        - "&7Click to set the unique ID for this recipe."
+        - ""
+        - "&7Current ID: {value}"
+    category:
+      material: "BOOK"
+      custom-model-data: 1001
+      display-name: "&e&lCategory"
+      lore:
+        - "&7Click to set the category."
+        - ""
+        - "&7Current: {value}"
+    time:
+      material: "CLOCK"
+      custom-model-data: 1001
+      display-name: "&e&lCrafting Time"
+      lore:
+        - "&7Click to set the crafting time."
+        - ""
+        - "&7Current: &e{value}"
+    cooldown:
+      material: "ENDER_PEARL"
+      custom-model-data: 1001
+      display-name: "&b&lCooldown"
+      lore:
+        - "&7Click to set the cooldown."
+        - ""
+        - "&7Current: &e{value}"
+    permission:
+      material: "IRON_BARS"
+      custom-model-data: 1001
+      display-name: "&c&lPermission"
+      lore:
+        - "&7Click to set a permission node."
+        - "&7(Optional, 'none' to remove)"
+        - ""
+        - "&7Current: {value}"
+    money:
+      material: "GOLD_INGOT"
+      custom-model-data: 1001
+      display-name: "&6&lMoney Cost"
+      lore:
+        - "&7Click to set a money cost."
+        - ""
+        - "&7Current Cost: &a{value}"
+    points:
+      material: "EXPERIENCE_BOTTLE"
+      custom-model-data: 1001
+      display-name: "&b&lPoints Cost"
+      lore:
+        - "&7Click to set a points cost."
+        - ""
+        - "&7Current Cost: &b{value}"
+    level:
+      material: "ANVIL"
+      custom-model-data: 1001
+      display-name: "&b&lForging Level Req"
+      lore:
+        - "&7Click to set the required Forging Level."
+        - ""
+        - "&7Current Requirement: &e{value}"
+    xp:
+      material: "LAPIS_LAZULI"
+      custom-model-data: 1001
+      display-name: "&a&lXP Reward"
+      lore:
+        - "&7Click to set the XP reward."
+        - ""
+        - "&7Current Reward: &a{value}"
+    priority:
+      material: "DIAMOND"
+      custom-model-data: 1001
+      display-name: "&d&lSort Priority"
+      lore:
+        - "&7Click to set the sorting priority."
+        - "&7Higher numbers appear first."
+        - ""
+        - "&7Current Priority: &e{value}"
+
+# --- Delivery Editor GUI ---
+delivery-editor-gui:
+  enable-decorations: true # Enable or disable filler items
+  filler-item:
+    material: "BLACK_STAINED_GLASS_PANE"
+  gui-item-placeholder:
+    material: "GRINDSTONE"
+    custom-model-data: 1001
+    display-name: "&a&lGUI Item"
+    lore:
+      - "&7Place the display item here."
+  requirement-placeholder:
+    material: "RED_STAINED_GLASS_PANE"
+    custom-model-data: 1001
+    display-name: "&c&lRequirement Slot"
+    lore:
+      - "&7Place a required item here."
+  reward-placeholder:
+    material: "LIME_STAINED_GLASS_PANE"
+    custom-model-data: 1001
+    display-name: "&b&lReward Item Slot"
+    lore:
+      - "&7Place a reward item here."
+  buttons:
+    back:
+      material: "ARROW"
+      custom-model-data: 1001
+      display-name: "&c&lBack"
+      lore:
+        - "&7Return to the job list."
+    save-ready:
+      material: "LIME_STAINED_GLASS_PANE"
+      custom-model-data: 1001
+      display-name: "&a&lSave Job"
+      lore:
+        - "&7Click to save this job to deliveries.yml"
+    save-not-ready:
+      material: "RED_STAINED_GLASS_PANE"
+      custom-model-data: 1001
+      display-name: "&c&lCannot Save"
+      lore:
+        - "&cMissing the following information:"
+    id:
+      material: "NAME_TAG"
+      custom-model-data: 1001
+      display-name: "&e&lJob ID"
+      is_editing_text: "&cThe ID of an existing job cannot be changed."
+      lore:
+        - "{is_editing_lore}"
+        - "&7Click to set the unique ID for this job."
+        - ""
+        - "&7Current ID: {value}"
+    time:
+      material: "CLOCK"
+      custom-model-data: 1001
+      display-name: "&e&lDelivery Time"
+      lore:
+        - "&7Click to set the delivery time."
+        - ""
+        - "&7Current Time: &e{value}"
+    cooldown:
+      material: "ENDER_PEARL"
+      custom-model-data: 1001
+      display-name: "&b&lJob Cooldown"
+      lore:
+        - "&7Click to set the cooldown."
+        - ""
+        - "&7Current Cooldown: &e{value}"
+    permission:
+      material: "IRON_BARS"
+      custom-model-data: 1001
+      display-name: "&c&lPermission Node"
+      lore:
+        - "&7Click to set a permission requirement."
+        - "&7(Optional - type 'none' to remove)"
+        - ""
+        - "&7Current Permission: {value}"
+    money:
+      material: "GOLD_INGOT"
+      custom-model-data: 1001
+      display-name: "&6&lMoney Reward"
+      lore:
+        - "&7Click to set a money reward."
+        - ""
+        - "&7Current Reward: &a{value}"
+    points:
+      material: "EXPERIENCE_BOTTLE"
+      custom-model-data: 1001
+      display-name: "&b&lPoints Reward"
+      lore:
+        - "&7Click to set a points reward."
+        - ""
+        - "&7Current Reward: &b{value}"

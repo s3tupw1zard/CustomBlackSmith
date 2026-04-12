@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="customblacksmith:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/customblacksmith_jar</output-path>
+    <root id="archive" name="CustomBlacksmit.jar">
+      <element id="module-output" name="customblacksmith" />
+    </root>
+  </artifact>
+</component>

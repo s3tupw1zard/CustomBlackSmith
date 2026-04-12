@@ -1,0 +1,53 @@
+name: HorizonBlacksmith
+version: '3.1.2'
+main: me.allync.horizonblacksmith.HorizonBlacksmith
+api-version: '1.21'
+author: Allync
+description: A custom crafting and delivery plugin with a visual queue.
+softdepend: [Vault, PlayerPoints, ItemsAdder, MMOItems]
+
+commands:
+  blacksmith:
+    description: Opens the main blacksmith crafting GUI.
+    usage: /blacksmith
+    aliases: [bs, craft]
+    permission: customblacksmith.player.open
+  blacksmithadmin:
+    description: Admin commands for the plugin.
+    usage: /blacksmithadmin [reload|delivery|open|set|give]
+    aliases: [bsa, craftadmin]
+    permission: customblacksmith.admin.open
+  craftstatus:
+    description: Checks the status of your current crafts.
+    usage: /craftstatus
+    permission: customblacksmith.player.status
+  delivery:
+    description: Opens the delivery jobs GUI.
+    usage: /delivery
+    permission: customblacksmith.player.delivery
+
+permissions:
+  customblacksmith.admin.open:
+    description: Allows opening the admin GUI for recipes.
+    default: op
+  customblacksmith.admin.delivery:
+    description: Allows opening the admin GUI for deliveries.
+    default: op
+  customblacksmith.admin.create:
+    description: Allows creating new recipes via the admin GUI/command.
+    default: op
+  customblacksmith.admin.reload:
+    description: Allows usage of the /bsa reload command.
+    default: op
+  customblacksmith.admin.modifydata:
+    description: Allows giving/setting player forging levels and experience.
+    default: op
+  customblacksmith.player.open:
+    description: Allows opening the player crafting GUI.
+    default: true
+  customblacksmith.player.status:
+    description: Allows checking craft status.
+    default: true
+  customblacksmith.player.delivery:
+    description: Allows opening the delivery GUI.
+    default: true
